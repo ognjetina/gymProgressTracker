@@ -1,4 +1,4 @@
-import React, {userRef} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   View,
   ScrollView,
@@ -9,49 +9,19 @@ import {
 } from 'react-native';
 import {Colors} from '../../Components';
 import {NavigationRouts as Routes} from '../../Navigation/NavigationRoutes';
+import {DatabaseContext} from '../../Data/DatabaseContext';
 
 export const PracticeScreen = ({navigation}) => {
-  const workouts = [
-    {
-      name: 'Deadlift',
-      iconName: 'arrow',
-      description:
-        'This is a nice description, what this workout is good for! ' +
-        'This is a nice description, what this workout is good for!',
-    },
-    {
-      name: 'Squat',
-      iconName: 'arrow',
-      description: 'This is a nice description, what this workout is good for!',
-    },
-    {
-      name: 'Biceps curl',
-      iconName: 'arrow',
-      description: 'This is a nice description, what this workout is good for!',
-    },
-    {
-      name: 'Bench press',
-      iconName: 'arrow',
-      description: 'This is a nice description, what this workout is good for!',
-    },
-    {
-      name: 'Leg curl',
-      iconName: 'arrow',
-      description: 'This is a nice description, what this workout is good for!',
-    },
-    {
-      name: 'Bent over row',
-      iconName: 'arrow',
-      description: 'This is a nice description, what this workout is good for!',
-    },
-    {
-      name: 'Shoulder Press',
-      iconName: 'arrow',
-      description: 'This is a nice description, what this workout is good for!',
-    },
-  ];
+  [workouts, setWorkouts] = useState([]);
+  const databaseContext = useContext(DatabaseContext);
 
   const scrollY = new Animated.Value(0);
+
+  useEffect(() => {
+    databaseContext.getWorkouts().then(result => {
+      setWorkouts(result);
+    });
+  }, []);
 
   return (
     <View style={styles.mainContainer}>
@@ -66,22 +36,23 @@ export const PracticeScreen = ({navigation}) => {
             scrollY.setValue(event.nativeEvent.contentOffset.y)
           }>
           <View style={{paddingBottom: 24}}>
-            {workouts.map(workout => {
-              return (
-                <View key={workout.name} style={styles.cardContainer}>
-                  <View style={styles.cardBodyContainer}>
-                    <View>
-                      <Text style={styles.cardTitle}>{workout.name}</Text>
-                    </View>
-                    <View style={styles.cardDescriptionContainer}>
-                      <Text style={styles.cardDescriptionText}>
-                        {workout.description}
-                      </Text>
+            {workouts &&
+              workouts.map(workout => {
+                return (
+                  <View key={workout.id} style={styles.cardContainer}>
+                    <View style={styles.cardBodyContainer}>
+                      <View>
+                        <Text style={styles.cardTitle}>{workout.name}</Text>
+                      </View>
+                      <View style={styles.cardDescriptionContainer}>
+                        <Text style={styles.cardDescriptionText}>
+                          {workout.description}
+                        </Text>
+                      </View>
                     </View>
                   </View>
-                </View>
-              );
-            })}
+                );
+              })}
           </View>
         </ScrollView>
       ) : (
@@ -143,7 +114,7 @@ const styles = StyleSheet.create({
     shadowColor: Colors.PRIMARY,
     shadowOffset: {
       width: 0,
-      height: 3, 
+      height: 3,
     },
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
