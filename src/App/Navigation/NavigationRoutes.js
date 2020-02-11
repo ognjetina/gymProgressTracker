@@ -3,5 +3,6 @@ export const NavigationRouts = {
 	TABS: 'TABS',
 	PRACTICE: 'PRACTICE',
 	SUMMARY: 'SUMMARY',
+	MANAGEMENT: 'MANAGEMENT',
 	SETTINGS: 'SETTINGS'
 };

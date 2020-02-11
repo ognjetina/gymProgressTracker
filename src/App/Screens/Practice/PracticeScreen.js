@@ -1,6 +1,14 @@
 import React, {userRef} from 'react';
-import {View, ScrollView, Text, StyleSheet, Animated} from 'react-native';
+import {
+  View,
+  ScrollView,
+  Text,
+  StyleSheet,
+  Animated,
+  TouchableOpacity,
+} from 'react-native';
 import {Colors} from '../../Components';
+import {NavigationRouts as Routes} from '../../Navigation/NavigationRoutes';
 
 export const PracticeScreen = ({navigation}) => {
   const workouts = [
@@ -51,26 +59,45 @@ export const PracticeScreen = ({navigation}) => {
         <Text style={styles.titleText}>WORKOUTS</Text>
       </View>
 
-      <ScrollView
-        style={styles.scrollViewContainer}
-        onScroll={event => scrollY.setValue(event.nativeEvent.contentOffset.y)}>
-        {workouts.map(workout => {
-          return (
-            <View key={workout.name} style={styles.cardContainer}>
-              <View style={styles.cardBodyContainer}>
-                <View>
-                  <Text style={styles.cardTitle}>{workout.name}</Text>
+      {workouts && workouts.length > 0 ? (
+        <ScrollView
+          style={styles.scrollViewContainer}
+          onScroll={event =>
+            scrollY.setValue(event.nativeEvent.contentOffset.y)
+          }>
+          <View style={{paddingBottom: 24}}>
+            {workouts.map(workout => {
+              return (
+                <View key={workout.name} style={styles.cardContainer}>
+                  <View style={styles.cardBodyContainer}>
+                    <View>
+                      <Text style={styles.cardTitle}>{workout.name}</Text>
+                    </View>
+                    <View style={styles.cardDescriptionContainer}>
+                      <Text style={styles.cardDescriptionText}>
+                        {workout.description}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
-                <View style={styles.cardDescriptionContainer}>
-                  <Text style={styles.cardDescriptionText}>
-                    {workout.description}
-                  </Text>
-                </View>
-              </View>
-            </View>
-          );
-        })}
-      </ScrollView>
+              );
+            })}
+          </View>
+        </ScrollView>
+      ) : (
+        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Text style={{marginBottom: 16, color: Colors.PRIMARY}}>
+            There are no workouts currently defined
+          </Text>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={() => navigation.navigate(Routes.MANAGEMENT)}>
+            <Text style={{color: Colors.PRIMARY, fontWeight: 'bold'}}>
+              Add workouts
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
@@ -89,7 +116,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingHorizontal: 24,
     justifyContent: 'flex-end',
-	  borderBottomWidth: 1
+    borderBottomWidth: 1,
   },
   titleText: {
     fontSize: 20,
@@ -99,8 +126,7 @@ const styles = StyleSheet.create({
   scrollViewContainer: {
     flex: 1,
     alignSelf: 'stretch',
-    paddingHorizontal: 32,
-    paddingTop: 26,
+    paddingTop: 16,
     borderColor: Colors.PRIMARY,
   },
   cardContainer: {
@@ -109,9 +135,19 @@ const styles = StyleSheet.create({
     height: 140,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginHorizontal: 24,
+    marginBottom: 10,
+    marginTop: 4,
     borderRadius: 16,
     padding: 16,
+    shadowColor: Colors.PRIMARY,
+    shadowOffset: {
+      width: 0,
+      height: 3, 
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
   cardImage: {
     width: 100,
@@ -134,5 +170,20 @@ const styles = StyleSheet.create({
   },
   cardDescriptionText: {
     color: Colors.PRIMARY,
+  },
+  buttonContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 12,
+    backgroundColor: Colors.ACTIVE,
+    borderRadius: 6,
+    shadowColor: Colors.PRIMARY,
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 6,
   },
 });
