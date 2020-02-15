@@ -1,11 +1,10 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
-import {NavigationRouts} from '../Navigation/NavigationRoutes';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { NavigationRouts } from '../Navigation/NavigationRoutes';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Colors} from './Colors';
+import { Colors } from './Colors';
 
-export const TabBar = ({navigation}) => {
-
+export const TabBar = ({ navigation }) => {
   return (
     <View
       style={{
@@ -27,7 +26,7 @@ export const TabBar = ({navigation}) => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.navBarButton, {alignItems: 'flex-start'}]}
+        style={[styles.navBarButton, { alignItems: 'flex-start' }]}
         onPress={() => navigation.navigate(NavigationRouts.SUMMARY)}>
         <Icon
           name={'chart-line'}
@@ -36,18 +35,18 @@ export const TabBar = ({navigation}) => {
         />
       </TouchableOpacity>
 
-	    <TouchableOpacity
-		    style={[styles.navBarButton, {alignItems: 'flex-end'}]}
-		    onPress={() => navigation.navigate(NavigationRouts.MANAGEMENT)}>
-		    <Icon
-			    name={'bulletin-board'}
-			    color={navigation.state.index === 2 ? Colors.ACTIVE : Colors.INACTIVE}
-			    size={30}
-		    />
-	    </TouchableOpacity>
+      <TouchableOpacity
+        style={[styles.navBarButton, { alignItems: 'flex-end' }]}
+        onPress={() => navigation.navigate(NavigationRouts.MANAGEMENT)}>
+        <Icon
+          name={'bulletin-board'}
+          color={navigation.state.index === 2 ? Colors.ACTIVE : Colors.INACTIVE}
+          size={30}
+        />
+      </TouchableOpacity>
 
       <TouchableOpacity
-        style={[styles.navBarButton, {alignItems: 'flex-end'}]}
+        style={[styles.navBarButton, { alignItems: 'flex-end' }]}
         onPress={() => navigation.navigate(NavigationRouts.SETTINGS)}>
         <Icon
           name={'settings'}

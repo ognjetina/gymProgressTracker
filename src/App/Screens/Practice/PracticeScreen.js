@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   View,
   ScrollView,
@@ -7,11 +7,11 @@ import {
   Animated,
   TouchableOpacity,
 } from 'react-native';
-import {Colors} from '../../Components';
-import {NavigationRouts as Routes} from '../../Navigation/NavigationRoutes';
-import {DatabaseContext} from '../../Data/DatabaseContext';
+import { Colors } from '../../Components';
+import { NavigationRouts as Routes } from '../../Navigation/NavigationRoutes';
+import { DatabaseContext } from '../../Data/DatabaseContext';
 
-export const PracticeScreen = ({navigation}) => {
+export const PracticeScreen = ({ navigation }) => {
   [workouts, setWorkouts] = useState([]);
   const databaseContext = useContext(DatabaseContext);
 
@@ -35,7 +35,7 @@ export const PracticeScreen = ({navigation}) => {
           onScroll={event =>
             scrollY.setValue(event.nativeEvent.contentOffset.y)
           }>
-          <View style={{paddingBottom: 24}}>
+          <View style={{ paddingBottom: 24 }}>
             {workouts &&
               workouts.map(workout => {
                 return (
@@ -56,14 +56,15 @@ export const PracticeScreen = ({navigation}) => {
           </View>
         </ScrollView>
       ) : (
-        <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{marginBottom: 16, color: Colors.PRIMARY}}>
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ marginBottom: 16, color: Colors.PRIMARY }}>
             There are no workouts currently defined
           </Text>
           <TouchableOpacity
             style={styles.buttonContainer}
             onPress={() => navigation.navigate(Routes.MANAGEMENT)}>
-            <Text style={{color: Colors.PRIMARY, fontWeight: 'bold'}}>
+            <Text style={{ color: Colors.PRIMARY, fontWeight: 'bold' }}>
               Add workouts
             </Text>
           </TouchableOpacity>
