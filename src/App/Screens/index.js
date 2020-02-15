@@ -3,3 +3,4 @@ export * from './Practice/PracticeScreen';
 export * from './Summary/SummaryScreen';
 export * from './Settings/SettingsScreen';
 export * from './Management/ManagamentScreen';
+export * from './Management/WorkoutCRUDScreen';

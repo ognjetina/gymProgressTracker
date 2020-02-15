@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { NavigationRouts } from '../Navigation/NavigationRoutes';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from './Colors';
@@ -37,7 +37,7 @@ export const TabBar = ({ navigation }) => {
 
       <TouchableOpacity
         style={[styles.navBarButton, { alignItems: 'flex-end' }]}
-        onPress={() => navigation.navigate(NavigationRouts.MANAGEMENT)}>
+        onPress={() => navigation.navigate(NavigationRouts.MANAGEMENT_STACK)}>
         <Icon
           name={'bulletin-board'}
           color={navigation.state.index === 2 ? Colors.ACTIVE : Colors.INACTIVE}

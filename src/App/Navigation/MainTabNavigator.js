@@ -1,11 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import {
-  ManagementScreen,
-  PracticeScreen,
-  SettingsScreen,
-  SummaryScreen,
-} from '../Screens';
+import { PracticeScreen, SettingsScreen, SummaryScreen } from '../Screens';
+import { ManagementNavigator } from './ManagamentNavigator';
 import { NavigationRouts } from './NavigationRoutes';
 import { TabBar } from '../Components';
 
@@ -13,7 +9,7 @@ export const MainTabNavigator = createBottomTabNavigator(
   {
     [NavigationRouts.PRACTICE]: PracticeScreen,
     [NavigationRouts.SUMMARY]: SummaryScreen,
-    [NavigationRouts.MANAGEMENT]: ManagementScreen,
+    [NavigationRouts.MANAGEMENT_STACK]: ManagementNavigator,
     [NavigationRouts.SETTINGS]: SettingsScreen,
   },
   {

@@ -1,13 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  Animated,
-  TouchableOpacity,
-} from 'react-native';
-import { Colors } from '../../Components';
+import { View, ScrollView, Text, StyleSheet, Animated } from 'react-native';
+import { Button, Colors, Header } from '../../Components';
 import { NavigationRouts as Routes } from '../../Navigation/NavigationRoutes';
 import { DatabaseContext } from '../../Data/DatabaseContext';
 
@@ -25,9 +18,7 @@ export const PracticeScreen = ({ navigation }) => {
 
   return (
     <View style={styles.mainContainer}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.titleText}>WORKOUTS</Text>
-      </View>
+      <Header label={'WORKOUTS'} />
 
       {workouts && workouts.length > 0 ? (
         <ScrollView
@@ -61,13 +52,10 @@ export const PracticeScreen = ({ navigation }) => {
           <Text style={{ marginBottom: 16, color: Colors.PRIMARY }}>
             There are no workouts currently defined
           </Text>
-          <TouchableOpacity
-            style={styles.buttonContainer}
-            onPress={() => navigation.navigate(Routes.MANAGEMENT)}>
-            <Text style={{ color: Colors.PRIMARY, fontWeight: 'bold' }}>
-              Add workouts
-            </Text>
-          </TouchableOpacity>
+          <Button
+            label={'Add workouts'}
+            onPress={() => navigation.navigate(Routes.WORKOUT_CRUD)}
+          />
         </View>
       )}
     </View>
@@ -79,21 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingTop: 24,
     alignSelf: 'stretch',
-  },
-  titleContainer: {
-    marginBottom: 8,
-    alignSelf: 'stretch',
-    alignItems: 'flex-start',
-    paddingHorizontal: 24,
-    justifyContent: 'flex-end',
-    borderBottomWidth: 1,
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.PRIMARY,
   },
   scrollViewContainer: {
     flex: 1,
@@ -142,20 +116,5 @@ const styles = StyleSheet.create({
   },
   cardDescriptionText: {
     color: Colors.PRIMARY,
-  },
-  buttonContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 12,
-    backgroundColor: Colors.ACTIVE,
-    borderRadius: 6,
-    shadowColor: Colors.PRIMARY,
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 6,
   },
 });
