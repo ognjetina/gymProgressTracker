@@ -836,9 +836,9 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
-"@nozbe/watermelondb@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@nozbe/watermelondb/-/watermelondb-0.15.0.tgz#b5f2f89b5a7a4edf62f7c678c0f93737e02db2f2"
+"@nozbe/watermelondb@^0.15.1":
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/@nozbe/watermelondb/-/watermelondb-0.15.1.tgz#5129976bae4dc0ccf57d5534c76f3f4eb5ce9245"
   dependencies:
     lodash.clonedeep "^4.5.0"
     lokijs "git+https://github.com/Nozbe/LokiJS.git#384b80f"
